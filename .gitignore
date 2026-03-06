@@ -1,0 +1,7 @@
+/.ruby-lsp/
+/pkg/
+/tmp/
+*.gem
+CLAUDE.md
+Gemfile.lock
+memory.md
