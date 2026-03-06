@@ -8,6 +8,7 @@ group :development, :test do
   gem "minitest", "~> 5.0"
   gem "rake", "~> 13.0"
   gem "standard", "~> 1.0"
+  gem "steep", "~> 1.10"
 end
 
 group :test do
