@@ -1,0 +1,23 @@
+# Minimal stubs for ActiveRecord and ActiveSupport types
+# referenced in Carnet's RBS signatures. These are not
+# exhaustive -- they declare only enough surface area for
+# Steep to resolve the inheritance and parameter types
+# that Carnet uses.
+
+module ActiveRecord
+  class Base
+  end
+end
+
+module ActiveSupport
+  class Concern
+  end
+
+  module Notifications
+    def self.subscribe: (
+      String
+    ) { (untyped) -> void } -> untyped
+
+    def self.unsubscribe: (untyped) -> void
+  end
+end

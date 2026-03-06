@@ -1,0 +1,10 @@
+module Carnet
+  class RoleAssignment < ActiveRecord::Base
+    def active?: (?Time at) -> bool
+    def expired?: () -> bool
+
+    private
+
+    def no_overlapping_assignment: () -> void
+  end
+end

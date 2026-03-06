@@ -1,0 +1,21 @@
+module Carnet
+  # Mix-in for models that receive role assignments.
+  module RoleBearer
+    def can?: (
+      String ability,
+      on: ActiveRecord::Base,
+      ?at: Time
+    ) -> bool
+
+    def has_role?: (
+      String role_name,
+      on: ActiveRecord::Base,
+      ?at: Time
+    ) -> bool
+
+    def roles_on: (
+      ActiveRecord::Base on,
+      ?at: Time
+    ) -> untyped
+  end
+end

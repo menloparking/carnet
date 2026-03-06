@@ -1,0 +1,35 @@
+module Carnet
+  module RoleService
+    def self.assign_role: (
+      principal: ActiveRecord::Base,
+      role_name: String,
+      roleable: ActiveRecord::Base,
+      ?actor: ActiveRecord::Base?,
+      ?starts_at: Time?,
+      ?expires_at: Time?,
+      ?metadata: Hash[String | Symbol, untyped]?
+    ) -> RoleAssignment
+
+    def self.grant_ability: (
+      role_name: String,
+      ability: String,
+      ?actor: ActiveRecord::Base?,
+      ?metadata: Hash[String | Symbol, untyped]?
+    ) -> RoleAbility
+
+    def self.revoke_ability: (
+      role_name: String,
+      ability: String,
+      ?actor: ActiveRecord::Base?,
+      ?metadata: Hash[String | Symbol, untyped]?
+    ) -> void
+
+    def self.revoke_role: (
+      principal: ActiveRecord::Base,
+      role_name: String,
+      roleable: ActiveRecord::Base,
+      ?actor: ActiveRecord::Base?,
+      ?metadata: Hash[String | Symbol, untyped]?
+    ) -> Integer
+  end
+end

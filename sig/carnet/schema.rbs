@@ -1,0 +1,5 @@
+module Carnet
+  module Schema
+    def self.create_tables: (untyped migration) -> void
+  end
+end

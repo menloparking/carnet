@@ -1,0 +1,14 @@
+module Carnet
+  class Error < StandardError
+  end
+
+  class UnregisteredAbilityError < Error
+    attr_reader ability: String
+
+    def initialize: (String ability) -> void
+  end
+
+  class OverlappingAssignmentError < Error
+    def initialize: (?String? msg) -> void
+  end
+end

@@ -1,0 +1,50 @@
+module Carnet
+  module QueryBudget
+    class Exceeded < Carnet::Error
+      attr_reader method_name: String
+      attr_reader query_count: Integer
+      attr_reader budget: Integer
+      attr_reader queries: Array[String]
+
+      def initialize: (
+        String method_name,
+        Integer query_count,
+        Integer budget,
+        Array[String] queries
+      ) -> void
+
+      private
+
+      def build_message: () -> String
+    end
+
+    class Counter
+      attr_reader queries: Array[String]
+
+      def initialize: () -> void
+      def track: [T] () { () -> T } -> T
+      def count: () -> Integer
+    end
+
+    def self.enforce: [T] (
+      String method_name,
+      ?mode: Symbol,
+      ?budget: Integer
+    ) { () -> T } -> T
+
+    private
+
+    def self.on_exceeded: (
+      String label,
+      Counter counter,
+      Integer budget,
+      Symbol mode
+    ) -> void
+
+    def self.log_exceeded: (
+      String label,
+      Counter counter,
+      Integer budget
+    ) -> void
+  end
+end

@@ -1,0 +1,9 @@
+module Carnet
+  class Configuration
+    attr_accessor logger: Logger
+    attr_accessor query_budget_mode: Symbol
+    attr_accessor query_budget: Integer
+
+    def initialize: () -> void
+  end
+end

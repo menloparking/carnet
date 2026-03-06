@@ -1,0 +1,16 @@
+module Carnet
+  class RoleEvent < ActiveRecord::Base
+    def self.record_event!: (
+      actor: ActiveRecord::Base?,
+      target: ActiveRecord::Base,
+      action: String,
+      ?role_name: String?,
+      ?roleable: ActiveRecord::Base?,
+      ?metadata: Hash[String | Symbol, untyped]?
+    ) -> RoleEvent
+
+    private
+
+    def raise_immutable!: () -> void
+  end
+end

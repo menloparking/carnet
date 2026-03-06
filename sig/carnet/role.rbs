@@ -1,0 +1,8 @@
+module Carnet
+  class Role < ActiveRecord::Base
+    def abilities: () -> Array[String]
+    def grant_ability!: (String ability) -> RoleAbility
+    def has_ability?: (String ability) -> bool
+    def revoke_ability!: (String ability) -> void
+  end
+end
