@@ -16,6 +16,17 @@ module Carnet
 
     # rubocop:disable Metrics/MethodLength
     def create_tables(migration)
+      # Resolve the polymorphic _id column type from the app's
+      # generator config so that UUID apps get uuid columns and
+      # bigint apps get bigint columns. Defaults to :bigint when
+      # no generator config is present (Rails default).
+      pk_type = begin
+        Rails.configuration.generators.options
+             .dig(:active_record, :primary_key_type) || :bigint
+      rescue
+        :bigint
+      end
+
       migration.create_table :carnet_roles do |t|
         t.string :name, null: false
         t.string :description
@@ -34,11 +45,11 @@ module Carnet
 
       migration.create_table :carnet_role_assignments do |t|
         t.string :principal_type, null: false
-        t.bigint :principal_id, null: false
+        t.column :principal_id, pk_type, null: false
         t.references :role, null: false,
           foreign_key: {to_table: :carnet_roles}
         t.string :roleable_type, null: false
-        t.bigint :roleable_id, null: false
+        t.column :roleable_id, pk_type, null: false
         t.datetime :starts_at
         t.datetime :expires_at
         t.timestamps
@@ -52,13 +63,13 @@ module Carnet
 
       migration.create_table :carnet_role_events do |t|
         t.string :actor_type
-        t.bigint :actor_id
+        t.column :actor_id, pk_type
         t.string :target_type, null: false
-        t.bigint :target_id, null: false
+        t.column :target_id, pk_type, null: false
         t.string :action, null: false
         t.string :role_name
         t.string :roleable_type
-        t.bigint :roleable_id
+        t.column :roleable_id, pk_type
         t.json :metadata
         t.datetime :created_at, null: false
         t.index %i[target_type target_id]
