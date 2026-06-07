@@ -22,7 +22,7 @@ module Carnet
       # no generator config is present (Rails default).
       pk_type = begin
         Rails.configuration.generators.options
-             .dig(:active_record, :primary_key_type) || :bigint
+          .dig(:active_record, :primary_key_type) || :bigint
       rescue
         :bigint
       end
